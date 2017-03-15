@@ -28,13 +28,12 @@ public class Cube {
 	}
 	
 	// 用于求从n1到n2的立方和
+	// 使用立方求和公式计算，能够大大降低计算量
 	// 返回long型立方和
 	static long CubeSum(long n1, long n2) {
 		long result = 0;
-		long i;
-		for(i = n1; i <= n2; i++){
-			result += i*i*i;
-		}
+		result += Math.pow(n2*(n2+1)/2, 2);
+		result -= Math.pow(n1*(n1-1)/2, 2);
 		return result;
 	}
 	
@@ -58,7 +57,7 @@ public class Cube {
 		double tmp1 = Math.pow((double)n, 1.0/3);
 		// 将求得的立方根四舍五入转换为整形
 		long tmp2 = Math.round(tmp1);
-		// 由于浮点数的计算误差，不能直接比较大小，故两数之差足够下即认为相等
+		// 由于浮点数的计算误差，不能直接比较大小，故两数之差足够小即认为相等
 		if(Math.abs(n - Math.pow(tmp2, 3)) < 1E-6) {
 			return true;
 		}
